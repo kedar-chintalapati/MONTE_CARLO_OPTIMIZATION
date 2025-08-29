@@ -1,0 +1,1 @@
+"[build] [sdist] [wheel] [bdist_wheel] __pycache__/ *.pyc *.so .idea/ .vscode/ *.egg-info/ dist/ build/ .conda/ .ipynb_checkpoints/ *.DS_Store *.log RESULTS/" 
