@@ -17,11 +17,13 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 # but it provides robustness. Let's first try to fix the file paths and keep imports simple.
 
 from lsm_py.lsm_pricer import price_american_put_lsm
+from lsm_py.lsm_numba import price_american_put_lsm_numba # <--- ADD THIS
+
 
 # This dictionary acts as a dispatcher. The key is the backend name from the
 # YAML file, and the value is the function to call.
 BACKENDS = {
-    "py": price_american_put_lsm
+    "py": price_american_put_lsm, "numba": price_american_put_lsm_numba
 }
 
 def get_git_commit_hash() -> str:
