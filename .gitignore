@@ -1,1 +1,24 @@
-"[build] [sdist] [wheel] [bdist_wheel] __pycache__/ *.pyc *.so .idea/ .vscode/ *.egg-info/ dist/ build/ .conda/ .ipynb_checkpoints/ *.DS_Store *.log RESULTS/" 
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# Python compiled files
+__pycache__/
+*.pyc
+*.so
+
+# IDE and OS-specific files
+.idea/
+.vscode/
+.DS_Store
+
+# Virtual environment
+.conda/
+
+# Jupyter Notebook files
+.ipynb_checkpoints/
+
+# Other ignored files
+*.log
+RESULTS/
