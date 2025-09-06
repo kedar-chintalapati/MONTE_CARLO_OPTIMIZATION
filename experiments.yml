@@ -26,6 +26,7 @@ cases:
     backends:
       - "py"  # We only have the Python backend for now
       - "numba"  # add this
+      - "cpp"  # add this
 
 
   - name: "bs_american_put_medium"
@@ -48,3 +49,4 @@ cases:
     backends:
       - "py"
       - "numba"  # add this
+      - "cpp"  # add this
