@@ -9,6 +9,7 @@ project(LsmPerformanceSuite LANGUAGES CXX)
 # --- Find pybind11 ---
 # Add the submodule directory to CMake's search path
 add_subdirectory(external/pybind11)
+add_subdirectory(external/xsimd) # <-- ADD THIS
 
 # --- Create the Python Module ---
 # pybind11_add_module is a special command provided by pybind11.
@@ -19,8 +20,12 @@ add_subdirectory(external/pybind11)
 # Sources: The .cpp files to compile
 pybind11_add_module(lsm_cpp_backend
     lsm_cpp/src/lsm_pricer.cpp
+    lsm_cpp/src/lsm_pricer_simd.cpp
     lsm_cpp/src/bindings.cpp
 )
+
+# Link the xsimd library to our target
+target_link_libraries(lsm_cpp_backend PRIVATE xsimd) # <-- ADD THIS
 
 # --- Target Properties ---
 # On Windows, pybind11 creates a .pyd file (Python Dynamic Module).

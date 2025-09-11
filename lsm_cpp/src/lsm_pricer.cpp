@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
+#include "lsm_pricer.h"
 
 // Simple least-squares polynomial fit (degree 2)
 std::vector<double> polyfit(const std::vector<double>& x, const std::vector<double>& y) {

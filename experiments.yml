@@ -1,52 +1,39 @@
 # experiments.yml
 
-# This file defines the benchmark cases to be run by the runner.
-# Each entry under 'cases' is a separate experiment.
-
 cases:
   - name: "bs_american_put_small"
     description: "A small, fast-running case for quick validation."
     model: "black_scholes"
     payoff: "american_put"
-    
-    # Model and option parameters
-    params:
-      S0: 100.0
-      K: 105.0
-      T: 1.0
-      r: 0.05
-      sigma: 0.2
-      
-    # Simulation and backend parameters
-    simulation:
-      num_paths: 10000   # 1e4
-      num_steps: 50
-      seed: 42
-      
+    params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
+    simulation: {num_paths: 10000, num_steps: 50, seed: 42}
     backends:
-      - "py"  # We only have the Python backend for now
-      - "numba"  # add this
-      - "cpp"  # add this
-
+      - "py"
+      - "numba"
+      - "cpp"
+      - "cpp_simd"
 
   - name: "bs_american_put_medium"
     description: "A more realistic case that takes a few seconds to run."
     model: "black_scholes"
     payoff: "american_put"
-    
-    params:
-      S0: 100.0
-      K: 105.0
-      T: 1.0
-      r: 0.05
-      sigma: 0.2
-      
-    simulation:
-      num_paths: 50000   # 5e4
-      num_steps: 100
-      seed: 42
-      
+    params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
+    simulation: {num_paths: 50000, num_steps: 100, seed: 42}
     backends:
       - "py"
-      - "numba"  # add this
-      - "cpp"  # add this
+      - "numba"
+      - "cpp"
+      - "cpp_simd"
+
+  - name: "bs_american_put_large"
+    description: "A large case to highlight the benefits of SIMD on heavy workloads."
+    model: "black_scholes"
+    payoff: "american_put"
+    params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
+    # Using 102400 paths as it's a large number divisible by common SIMD batch sizes (4, 8)
+    simulation: {num_paths: 102400, num_steps: 100, seed: 42}
+    backends:
+      # We will only run the high-performance backends on this large case
+      - "numba"
+      - "cpp"
+      - "cpp_simd"
