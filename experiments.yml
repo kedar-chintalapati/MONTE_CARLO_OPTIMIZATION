@@ -1,10 +1,8 @@
-# experiments.yml
+# experiments.yml (FINAL VERSION)
 
 cases:
   - name: "bs_american_put_small"
     description: "A small, fast-running case for quick validation."
-    model: "black_scholes"
-    payoff: "american_put"
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
     simulation: {num_paths: 10000, num_steps: 50, seed: 42}
     backends:
@@ -15,25 +13,30 @@ cases:
 
   - name: "bs_american_put_medium"
     description: "A more realistic case that takes a few seconds to run."
-    model: "black_scholes"
-    payoff: "american_put"
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
     simulation: {num_paths: 50000, num_steps: 100, seed: 42}
     backends:
       - "py"
       - "numba"
       - "cpp"
+      - "cpp_arena"
       - "cpp_simd"
 
   - name: "bs_american_put_large"
-    description: "A large case to highlight the benefits of SIMD on heavy workloads."
-    model: "black_scholes"
-    payoff: "american_put"
+    description: "A large case to highlight benefits on heavy workloads."
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
-    # Using 102400 paths as it's a large number divisible by common SIMD batch sizes (4, 8)
     simulation: {num_paths: 102400, num_steps: 100, seed: 42}
     backends:
-      # We will only run the high-performance backends on this large case
       - "numba"
       - "cpp"
+      - "cpp_arena"
       - "cpp_simd"
+      - "cpp_ultimate"
+
+  - name: "bs_american_put_x-large"
+    description: "An extra-large case to showcase the power of multithreading."
+    params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
+    simulation: {num_paths: 512000, num_steps: 100, seed: 42}
+    backends:
+      # Only run the top contenders here
+      - "cpp_ultimate"
