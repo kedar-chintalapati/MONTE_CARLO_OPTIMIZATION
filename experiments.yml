@@ -2,35 +2,35 @@
 
 cases:
   - name: "bs_american_put_small"
-    description: "A small, fast-running case for quick validation."
+    description: "A small case to observe overheads and JIT compilation."
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
     simulation: {num_paths: 10000, num_steps: 50, seed: 42}
     backends:
       - "py"
-      - "numba"
+      - "numba" # Will show a long compile time here
       - "cpp"
       - "cpp_simd"
 
   - name: "bs_american_put_medium"
-    description: "A more realistic case that takes a few seconds to run."
+    description: "A standard case to compare all single-threaded backends."
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
     simulation: {num_paths: 50000, num_steps: 100, seed: 42}
     backends:
       - "py"
-      - "numba"
+      - "numba" # Already compiled, should be fast
       - "cpp"
       - "cpp_arena"
       - "cpp_simd"
 
   - name: "bs_american_put_large"
-    description: "A large case to highlight benefits on heavy workloads."
+    description: "A large case to compare all high-performance backends."
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
     simulation: {num_paths: 102400, num_steps: 100, seed: 42}
     backends:
       - "numba"
-      - "cpp"
       - "cpp_arena"
       - "cpp_simd"
+      - "cpp_mp"
       - "cpp_ultimate"
 
   - name: "bs_american_put_x-large"
@@ -38,5 +38,7 @@ cases:
     params: {S0: 100.0, K: 105.0, T: 1.0, r: 0.05, sigma: 0.2}
     simulation: {num_paths: 512000, num_steps: 100, seed: 42}
     backends:
-      # Only run the top contenders here
+      # Direct comparison between the fastest single-threaded and multi-threaded backends
+      - "cpp_simd"
+      - "cpp_mp"
       - "cpp_ultimate"

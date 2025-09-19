@@ -8,5 +8,6 @@ double price_american_put_lsm_cpp(double, double, double, double, double, int, i
 double price_american_put_lsm_arena(Arena&, double, double, double, double, double, int, int, int);
 double price_american_put_lsm_simd(double, double, double, double, double, int, int, int);
 double price_american_put_lsm_ultimate(Arena&, double, double, double, double, double, int, int, int);
+double price_american_put_lsm_mp(Arena&, double, double, double, double, double, int, int, int); // <-- ADD THIS
 
 #endif // LSM_PRICER_H

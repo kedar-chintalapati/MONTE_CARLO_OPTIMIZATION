@@ -10,6 +10,7 @@ pybind11_add_module(lsm_cpp_backend
     lsm_cpp/src/lsm_pricer_arena.cpp
     lsm_cpp/src/lsm_pricer_simd.cpp
     lsm_cpp/src/lsm_pricer_ultimate.cpp
+    lsm_cpp/src/lsm_pricer_mp.cpp # <-- ADD THIS
     lsm_cpp/src/bindings.cpp
 )
 
