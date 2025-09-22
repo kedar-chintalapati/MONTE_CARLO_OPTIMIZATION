@@ -37,18 +37,3 @@ This result proves that simply combining all available optimizations does not gu
 ## How to Run This Project
 
 To run this application, you will need two separate terminal sessions. Please follow the setup instructions in **[REPRODUCE.md](REPRODUCE.md)** first.
-
-### Terminal 1: Start the Backend API
-
-```powershell
-# Navigate to the project root directory
-cd lsm-performance-suite
-
-# Activate the Conda environment
-conda activate quant_perf
-
-# Set the required environment variable for OpenMP
-$env:KMP_DUPLICATE_LIB_OK="TRUE"
-
-# Start the API server
-uvicorn api:app --reload
