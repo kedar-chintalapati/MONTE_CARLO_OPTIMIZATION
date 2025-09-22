@@ -1,0 +1,43 @@
+:root { --primary-color: #61dafb; --secondary-color: #20232a; --bg-color: #f0f2f5; --panel-bg: #ffffff; --text-color: #333; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--bg-color); color: var(--text-color); }
+.App { text-align: center; }
+.App-header { background-color: var(--secondary-color); padding: 20px 40px; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.App-container { max-width: 1400px; margin: 20px auto; padding: 0 20px; }
+
+.tabs { margin-bottom: 20px; }
+.tabs button { font-size: 1.1rem; padding: 10px 25px; border: none; background: transparent; border-bottom: 3px solid transparent; cursor: pointer; margin: 0 10px; }
+.tabs button:disabled { border-bottom: 3px solid var(--primary-color); font-weight: bold; }
+
+.panel { background-color: var(--panel-bg); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 25px; margin-bottom: 20px; text-align: left; }
+.panel h3 { margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
+
+.grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.full-width { grid-column: 1 / -1; }
+
+.config-panel label { display: block; margin-bottom: 10px; font-weight: 500; }
+.config-panel input[type="number"], .config-panel select { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+.backend-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.backend-selector label { display: flex; align-items: center; gap: 8px; font-weight: normal; }
+.sweep-toggle { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.sweep-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 10px; }
+
+.run-container { text-align: center; padding-top: 20px; }
+.run-container button { font-size: 1.2rem; padding: 15px 35px; border: none; border-radius: 5px; background-color: var(--primary-color); color: var(--secondary-color); cursor: pointer; transition: background-color 0.2s; font-weight: bold; }
+.run-container button:hover { background-color: #21a1f1; }
+.run-container button:disabled { background-color: #a0a0a0; cursor: wait; }
+
+#results-panel { text-align: left; }
+.status-message, .error-message { text-align: center; font-size: 1.2rem; font-weight: 500; padding: 40px; }
+.error-message { color: #d32f2f; }
+.results-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.chart-toggles button { font-size: 0.9rem; padding: 8px 15px; border: 1px solid #ccc; background-color: #f9f9f9; cursor: pointer; }
+.chart-toggles button:disabled { background-color: var(--secondary-color); color: white; border-color: var(--secondary-color); }
+
+/* ... (Keep all previous styles) ... */
+.sweep-controls .info-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+    border-left: 3px solid #ccc;
+    padding-left: 10px;
+}
