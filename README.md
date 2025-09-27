@@ -26,7 +26,7 @@ It features a highly optimized C++/Python backend engine and an interactive Reac
 
 ## Findings
 
-A finding from this project is a of the practical limits of optimization. While the "Ultimate" backend (combining Multithreading, SIMD, and Arena Allocation) is fast, the **fastest backend on the largest workloads was the Multithreaded Scalar version with Arena Allocation (`cpp_mp`)**.
+A finding from this project is a of the potential limits of optimization. While the "Ultimate" backend (combining Multithreading, SIMD, and Arena Allocation) is fast, the **fastest backend on the largest workloads was the Multithreaded Scalar version with Arena Allocation (`cpp_mp`)**.
 
 The `cpp_ultimate` backend, which added the heaviest SIMD instructions on top of the multithreaded workload, was consistently slightly slower than its scalar counterpart on the same number of threads. This could be an example of hardware resource contention:
 1.  **(Memory Bandwidth Saturation)** All CPU cores attempting to execute data-hungry AVX instructions simultaneously can saturate the memory bus.
@@ -37,4 +37,5 @@ This result proves that simply combining all available optimizations does not gu
 ## How to Run This Project
 
 To run this application, you will need two separate terminal sessions. Please follow the setup instructions in **[REPRODUCE.md](REPRODUCE.md)** first.
+
 
